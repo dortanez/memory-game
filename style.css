@@ -1,0 +1,35 @@
+body {
+  background-color: darkblue;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#game div {
+  background: url(images/cardback.png) no-repeat;
+  background-position: center;
+  background-size: 110%;
+  width: 18%;
+  height: 150px;
+  margin: 1%;
+  border-radius: 5%;
+
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5%;
+}
