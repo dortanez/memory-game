@@ -140,7 +140,10 @@ function createDivsForCharacters() {
       }
       // check if all cards were matched
       if(matchedCards === characters.length) {
-        body.setAttribute('id','all-done');
+        const pageCover = document.createElement('div');
+        pageCover.setAttribute('id','cover');
+        body.style.backgroundColor = 'black';
+        body.appendChild(pageCover);
       }
     });
   }
