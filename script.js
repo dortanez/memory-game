@@ -83,6 +83,10 @@ const characters = [
 
 const gameContainer = document.getElementById("game");
 const body = document.querySelector('body');
+const pageCover1 = document.createElement('div');
+const pageCover2 = document.querySelector('#game-over-menu');
+const startOver = document.querySelector('#start-over');
+const allImgs = document.getElementsByTagName('img');
 let card1 = '';
 let card2 = '';
 let matchedCards = 0;
@@ -140,17 +144,19 @@ function createDivsForCharacters() {
       }
       // check if all cards were matched
       if(matchedCards === characters.length) {
-        const pageCover = document.createElement('div');
-        pageCover.setAttribute('id','cover');
+        pageCover2.className = '';
+        pageCover1.setAttribute('id','cover');
         body.style.backgroundColor = 'black';
-        body.appendChild(pageCover);
+        body.appendChild(pageCover1);
       }
     });
   }
   
 }
 
-
+startOver.addEventListener('click', function() {
+  location.reload();
+})
 
 // when the DOM loads
 createDivsForCharacters(shuffle(characters));
