@@ -1,5 +1,3 @@
-const gameContainer = document.getElementById("game");
-
 const characters = [
   {
     name: 'anduin',
@@ -83,10 +81,13 @@ const characters = [
   }
 ];
 
+const gameContainer = document.getElementById("game");
+const body = document.querySelector('body');
 let card1 = '';
 let card2 = '';
+let matchedCards = 0;
 
-
+// shuffle array of characters
 function shuffle(array) {
   let counter = array.length;
   while (counter > 0) {
@@ -99,51 +100,54 @@ function shuffle(array) {
   return array;
 }
 
-function createDivsForCharacters(characterArray) {
-  for (let character of characterArray) {
+// create divs for characters
+function createDivsForCharacters() {
+  for (let character of characters) {
     const newDiv = document.createElement("div");
     const newImg = document.createElement('img');
-    const allDivs = document.querySelectorAll('div.character');
 
-    newImg.setAttribute('src',character.src)
-    newImg.setAttribute('id',character.name)
-    newDiv.classList.add('character');
-
+    newImg.setAttribute('src',character.src);
+    newImg.setAttribute('class','hidden');
+    newDiv.setAttribute('id',character.name);
+    newDiv.appendChild(newImg);
     gameContainer.append(newDiv);
 
+    // revealing images on click
     newDiv.addEventListener("click", function(e) {
-      newDiv.appendChild(newImg);
-      if(card1 === '') {
-        card1 = e.target.children[0].getAttribute('id');
-      } else if(card2 === '') {
-        card2 = e.target.children[0].getAttribute('id');  
-      }
-      if(card1 === card2) {
-        console.log('yes');
-        card1 = '';
-        card2 = '';
-          for(let divs of allDivs) {
-            divs.innerHTML = '';
-          }
-      } else {
-        for(let divs of allDivs) {
-          divs.innerHTML = '';
-          card1 = '';
-          card2 = '';
-          }
-        }
-    });
+      newDiv.children[0].className = '';
 
-    
+      // comparing if the 2 cards match
+      if(card1 === '' || card2 === '') {
+        if(card1 === '') {
+          card1 = newDiv;
+        } else if(card2 === '') {
+          card2 = newDiv;
+          if(card1.innerHTML === card2.innerHTML) {
+            matchedCards += 2;
+            card1 = '';
+            card2 = '';
+          } else {
+            setTimeout(function() {
+              card1.children[0].className = 'hidden';
+              card2.children[0].className = 'hidden';
+              card1 = '';
+              card2 = '';
+            },500)
+          }
+        
+        }
+        
+      }
+      // check if all cards were matched
+      if(matchedCards === characters.length) {
+        body.setAttribute('id','all-done');
+      }
+    });
   }
+  
 }
+
 
 
 // when the DOM loads
 createDivsForCharacters(shuffle(characters));
-
-
-
-
-
-
