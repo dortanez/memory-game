@@ -131,9 +131,9 @@ button {
   h1 {
     font-size: 5rem;
   }
-  #game div {
+  /* #game div {
     height: 250px;
-  }
+  } */
   .container {
     margin-top: 100px;
   }
@@ -147,6 +147,10 @@ button {
     font-size: 2.5rem;
     padding: 7px 15px;
   }
+  img {
+    height: 100%;
+    width: 70%;
+  }
 }
 
 @media only screen and (max-width: 390px) {
@@ -156,5 +160,14 @@ button {
   button {
     font-size: .5rem;
     padding: 2px 5px;
+  }
+}
+
+@media only screen and (min-width: 2100px) {
+  #game div {
+    height: 250px;
+  }
+  img {
+    width: 90%;
   }
 }
