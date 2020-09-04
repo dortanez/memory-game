@@ -53,7 +53,7 @@ img {
  #game-over-menu {
   border: 2px solid black;
   position: relative;
-  background-color: black;
+  background: url(images/menu-wallpaper.jpg) no-repeat;
   max-height: 50%;
   max-width: 50%;
   top: -600px;
@@ -67,17 +67,94 @@ h2 {
   font-size: 4rem;
   margin: 0;
   text-transform: uppercase;
+  padding-bottom: 5%;
+}
+
+button {
+  font-size: 1.5rem;
+  padding: 5px 10px;
 }
 
 #start-over {
   position: relative;
 }
 
-/* @media only screen and (max-width: 960px) {
-  img {
-    height: 50%;
-    width: 50%;
-    border: 1px solid white;
-    border-radius: 5%;
+
+@media only screen and (max-width: 960px) {
+  h2 {
+    font-size: 3rem;
   }
-} */
+
+  #game div {
+    height: 100px;
+  }
+
+  .container {
+    margin-top: 50px;
+  }
+  #game-over-menu {
+    top: -400px;
+  }
+  
+}
+
+@media only screen and (max-width: 760px) {
+  #game-over-menu {
+    top: -150px;
+  }
+  #game div {
+    height: 40px;
+    margin: 1% .5% 2% 0;
+  }
+  .container {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+  #game div {
+    height: 150px;
+  }
+  .container {
+    margin-top: 50px;
+  }
+  #start-over {
+    font-size: 2rem;
+    padding: 5px 10px;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  h1 {
+    font-size: 5rem;
+  }
+  #game div {
+    height: 250px;
+  }
+  .container {
+    margin-top: 100px;
+  }
+  #game-over-menu {
+    top: -900px;
+  }
+  h2 {
+    font-size: 7rem;
+  }
+  button {
+    font-size: 2.5rem;
+    padding: 7px 15px;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  h2 {
+    font-size: 1rem;
+  }
+  button {
+    font-size: .5rem;
+    padding: 2px 5px;
+  }
+}
