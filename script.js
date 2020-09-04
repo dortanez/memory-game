@@ -86,7 +86,7 @@ const body = document.querySelector('body');
 const pageCover1 = document.createElement('div');
 const pageCover2 = document.querySelector('#game-over-menu');
 const startOver = document.querySelector('#start-over');
-const allImgs = document.getElementsByTagName('img');
+let noClick = false;
 let card1 = '';
 let card2 = '';
 let matchedCards = 0;
@@ -109,7 +109,6 @@ function createDivsForCharacters() {
   for (let character of characters) {
     const newDiv = document.createElement("div");
     const newImg = document.createElement('img');
-
     newImg.setAttribute('src',character.src);
     newImg.setAttribute('class','hidden');
     newDiv.setAttribute('id',character.name);
@@ -118,29 +117,36 @@ function createDivsForCharacters() {
 
     // revealing images on click
     newDiv.addEventListener("click", function(e) {
+      if(noClick) return;
       newDiv.children[0].className = '';
-
+      console.log(e.target.children[0].className)
       // comparing if the 2 cards match
       if(card1 === '' || card2 === '') {
         if(card1 === '') {
           card1 = newDiv;
         } else if(card2 === '') {
+          if(e.target.children[0] === undefined) {
+            return;
+          }
           card2 = newDiv;
           if(card1.innerHTML === card2.innerHTML) {
+            noClick = false;
+            card1.children[0].setAttribute('class','matched');
+            card2.children[0].setAttribute('class','matched');
             matchedCards += 2;
             card1 = '';
             card2 = '';
           } else {
+            noClick = true;
             setTimeout(function() {
+              noClick = false;
               card1.children[0].className = 'hidden';
               card2.children[0].className = 'hidden';
               card1 = '';
               card2 = '';
-            },500)
+            },1000)
           }
-        
         }
-        
       }
       // check if all cards were matched
       if(matchedCards === characters.length) {
@@ -151,9 +157,7 @@ function createDivsForCharacters() {
       }
     });
   }
-  
 }
-
 startOver.addEventListener('click', function() {
   location.reload();
 })
