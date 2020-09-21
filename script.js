@@ -92,7 +92,7 @@ let card2 = '';
 let matchedCards = 0;
 
 // shuffle array of characters
-function shuffle(array) {
+const shuffle = (array) => {
   let counter = array.length;
   while (counter > 0) {
     let index = Math.floor(Math.random() * counter);
@@ -105,7 +105,7 @@ function shuffle(array) {
 }
 
 // create divs for characters
-function createDivsForCharacters() {
+const createDivsForCharacters = () => {
   for (let character of characters) {
     const newDiv = document.createElement("div");
     const newImg = document.createElement('img');
@@ -119,7 +119,7 @@ function createDivsForCharacters() {
     newDiv.addEventListener("click", function(e) {
       if(noClick) return;
       newDiv.children[0].className = '';
-      console.log(e.target.children[0].className)
+
       // comparing if the 2 cards match
       if(card1 === '' || card2 === '') {
         if(card1 === '') {
